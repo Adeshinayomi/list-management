@@ -41,7 +41,7 @@ function showList(): void {
                 <p class="item ${list.isChecked?'checked':''}" id=${list.id}>${list.name}</p>
 
                 <div class="btn-div">
-                    <button class="check" id=${list.id}>check</button>
+                    <button class="check" id=${list.id}>${list.isChecked?'uncheck':'check'}</button>
                     <button class="delete-btn" id=${list.id}>delete</button>                 
                 </div>
             </div>
@@ -50,53 +50,77 @@ function showList(): void {
 
   output.innerHTML = html;
 
-  const deleteBtn = document.querySelectorAll<HTMLButtonElement>(".delete-btn")    ;
-  const checkBtn= document.querySelectorAll<HTMLButtonElement>('.check')
-  const items=output.querySelectorAll<HTMLButtonElement>('.item')
+//   const deleteBtn = document.querySelectorAll<HTMLButtonElement>(".delete-btn")    ;
+//   const checkBtn= document.querySelectorAll<HTMLButtonElement>('.check')
+//   const items=output.querySelectorAll<HTMLButtonElement>('.item')
 
-  checkBtn.forEach((item)=>{
-    item.addEventListener('click',()=>{
-        list.forEach((list)=>{
-            if(list.id === Number(item.id)){
-                list.isChecked=true
-            }
-        })
-        items.forEach((i)=>{
-            if(item.id === i.id){
-                i.classList.add('checked')
-            }
-        })
-    })
-  })
-  deleteBtn.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = Number(btn.id);
-      deleteList(id);
+//   checkBtn.forEach((item)=>{
+//     item.addEventListener('click',()=>{
+//         list.forEach((list)=>{
+//             if(list.id === Number(item.id)){
+//                 list.isChecked=!list.isChecked
+//             }
+//         })
+//         items.forEach((i)=>{
+//             if(item.id === i.id){
+//                 i.classList.toggle('checked')
+//             }
+//         })
+//     })
+//   })
+//   deleteBtn.forEach((btn) => {
+//     btn.addEventListener("click", () => {
+//       const id = Number(btn.id);
+//       deleteList(id);
+//     });
+//   });
+
+
+    if (list.length>0) {
+        empty.classList.add("hide");
+    } else {
+        empty.classList.remove("hide");
+    }
+}
+
+    output.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+
+        if (target.classList.contains('delete-btn')) {
+            deleteList(Number(target.id));
+        }
+
+        if (target.classList.contains('check')) {
+            toggleCheck(Number(target.id));
+        }
     });
-  });
 
-  if (output.innerHTML !== "") {
-    empty.classList.add("hide");
-  } else {
-    empty.classList.remove("hide");
-  }
-}
+    function toggleCheck(id: number): void {
+        list = list.map(item =>
+            item.id === id
+            ? { ...item, isChecked: !item.isChecked }
+            : item
+        );
 
-function deleteList(id: number): void {
-  list = list.filter((list) => {
-    return list.id !== id;
-  });
+        console.log(list)
 
-  showList();
-}
+        showList();
+    }
+    function deleteList(id: number): void {
+        list = list.filter((list) => {
+            return list.id !== id;
+        });
 
-btn?.addEventListener("click", (): void => {
-  addToList(input.value);
-});
+        showList();
+    }
+
+    btn?.addEventListener("click", (): void => {
+        addToList(input.value);
+    });
 
 
-deleteAllbtn.addEventListener('click',()=>{
-    list=[]
+    deleteAllbtn.addEventListener('click',()=>{
+        list=[]
 
-    showList()
-})
+        showList()
+    })
