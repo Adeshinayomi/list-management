@@ -26,9 +26,11 @@ function showList() {
         html += `
             <div>
                 <p class="item ${list.isChecked ? 'checked' : ''}" id=${list.id}>${list.name}</p>
-                 
-                <button class="check" id=${list.id}>check</button>
-                <button class="delete-btn" id=${list.id}>delete</button>
+
+                <div class="btn-div">
+                    <button class="check" id=${list.id}>check</button>
+                    <button class="delete-btn" id=${list.id}>delete</button>                 
+                </div>
             </div>
         `;
     });

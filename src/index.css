@@ -1,7 +1,100 @@
-.hide{
+body{
+    background-color: #1B1F3B;
+    font-family: "Rubik", sans-serif;
+}
+.empty.hide{
     display: none;
 }
 .checked{
      text-decoration: line-through;
      color: grey;
+}
+h1{
+    text-align: center;
+    font-weight: 500;
+    color: white;
+}
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 5px;
+    
+}
+.header input{
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow:2px 2px 2px;
+    background-color: white;
+}
+.header button{
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    background-color: #454ADE;
+    color: white;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+.header button:hover{
+    background-color: transparent;
+    border: solid #454ADE;
+}
+.output{
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: space-between;
+    gap: 10px;
+    color: white;
+    /* border: solid; */
+}
+.output div{
+    margin-top: 50px;
+    border: solid 2px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.output div p{
+    font-size: 20px;
+    font-weight: 500;
+}
+.output div .btn-div{
+    margin-top: 0;
+    border: none;
+    display: flex;
+    gap:10px;
+}
+.output div .btn-div button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #454ADE;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all .5s ease-in;
+}
+.output div .btn-div button:hover{
+    background-color: transparent;
+    border: solid #454ADE;
+}
+.empty{
+    width: 80%;
+    padding: 100px 0;
+    align-items: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    color: grey;
+    font-weight: bold;
+    font-size: 20px;
 }
